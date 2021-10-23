@@ -21,6 +21,12 @@
     <ClCompile Include="htable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="example1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="example2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="htable.h">

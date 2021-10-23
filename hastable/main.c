@@ -19,68 +19,15 @@ DEALINGS IN THE SOFTWARE.
 
 */
 
-#include <stdio.h>
-#include <stdint.h>
-#include <string.h>
-
-#include "htable.h"
-
-struct myItem_s {
-
-	char name[10];
-	int age;
-};
-
-typedef struct myItem_s myitem_t;
-
-int 
-myHashFunc(void *a, int size) {
-
-	char* ptr = ((struct myItem_s*)a)->name;
-	int hash = 0;
-
-	while (*ptr) {
-		hash += *ptr;
-		ptr++;
-	}
-	return hash % size;
-}
-
-int 
-myCmpFunc(void* a, void* b) {
-
-	return strcmp(((struct myItem_s*)a)->name, ((struct myItem_s*)b)->name);
-}
+int example2(int argc, char** argv);
+int example1(int argc, char** argv);
 
 
 int 
 main(int argc, char **argv)
 {
-	#define TSIZE 5
-	static struct hitem_s items[TSIZE];
-	static struct htable_s htable = { myHashFunc, myCmpFunc, TSIZE - 1, TSIZE, items };
+	example1(argc, argv);
+	example2(argc, argv);
 
-	struct myItem_s people[4] = {
-
-		{ "bill", 42 },
-		{ "bob", 31 },
-		{ "dave", 52 },
-		{ "fred", 10 }
-	};
-
-	struct hitem_s key[] = { (void*)5 };
-
-	hashInsert(&people[0], &htable);
-	hashInsert(&people[1], &htable);
-	hashInsert(&people[2], &htable);
-	hashInsert(&people[3], &htable);
-
-	{
-		struct myItem_s person[1] = { "dave", 0 };
-		struct myItem_s* ptr;
-
-		ptr = hashFind(person, &htable)->userItem;
-
-		printf("%s %d\n", ptr->name, ptr->age);
-	}
+	return 0;
 }
